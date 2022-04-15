@@ -7,10 +7,11 @@ set number
 set cursorline
 " Make tabs as wide as two spaces
 set tabstop=2
+set nowrap
 set softtabstop=2
 set smartindent
 " Highlight searches
-set hlsearch
+" set hlsearch
 " Ignore case of searches
 set ignorecase
 " Highlight dynamically as pattern is typed
@@ -31,8 +32,13 @@ set showcmd
 " Use relative line numbers
 set relativenumber
 " Start scrolling three lines before the horizontal window border
-set scrolloff=3
+set scrolloff=8
 
+Plug 'chaoren/vim-wordmotion'
+Plug 'argtextobj.vim'
+
+set wordmotion
+set argtextobj
 set surround
 set multiple-cursors
 set commentary
@@ -40,21 +46,33 @@ set argtextobj
 set easymotion
 set textobj-entire
 set ReplaceWithRegister
+set highlighedyank
 set exchange
+set matchit
+set vim-paragraph-motion
+
+
+set gdefault
+
+let g:EasyMotion_smartcase = 1
 
 "" Source your .vimrc
 "source ~/.vimrc
 
+
+map <leader>e <Action>(ShowErrorDescription)
 map <leader>d <Action>(Debug)
 map <leader>r <Action>(RenameElement)
+map <leader>R <Action>(Refactorings.QuickListPopupAction)
 map <leader>c <Action>(Stop)
 map <leader>z <Action>(ToggleDistractionFreeMode)
 
-map <leader>f <Plug>(easymotion-f)
-map <leader>F <Plug>(easymotion-F)
+map <leader>f <Plug>(easymotion-s)
 
-map <leader>t <Plug>(easymotion-t)
-map <leader>T <Plug>(easymotion-T)
+map <leader>t <Action>(RunClass)
+map <leader>s <Action>(SelectInProjectView)
+map <leader>a <Action>(Annotate)
+map <c-p> <Action>(GotoFile)
 
 map <leader>b <Action>(ToggleLineBreakpoint)
 map <leader>o <Action>(FileStructurePopup)
@@ -66,6 +84,7 @@ set scrolloff=5
 
 " Do incremental searching.
 set incsearch
+set nohlsearch
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 
@@ -97,3 +116,13 @@ nnoremap <leader>Y gg"+yG
 
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+nmap <C-x> <Plug>SkipOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+
