@@ -171,9 +171,9 @@ require('lint').linters_by_ft = {
   javascript = {'eslint',},
 }
 
-vim.cmd[[
-  " au BufWritePost <buffer> :lua require('lint').try_lint()<CR>
-]]
+-- vim.cmd[[
+--   " au BufWritePost <buffer> :lua require('lint').try_lint()<CR>
+-- ]]
 -- Easier remapping
 
 function CreateNoremap(type, opts)
