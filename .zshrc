@@ -35,7 +35,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git zsh-autosuggestions zsh-nvm)
+plugins=(git zsh-autosuggestions zsh-nvm 1password docker-compose tmux tmuxinator)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -59,34 +59,18 @@ export OPENSSL_LIBRARIES=/usr/local/opt/openssl@1.1/lib
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
 
 export LD_LIBRARY_PATH=/opt/homebrew/opt/ghostscript/lib:$LD_LIBRARY_PATH
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init --path)"
+#   eval "$(pyenv init -)"
+#   eval "$(pyenv virtualenv-init -)"
+# fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/pascal/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/pascal/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/pascal/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/pascal/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
