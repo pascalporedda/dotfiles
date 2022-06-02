@@ -31,8 +31,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.splitright = true
 
-
-vim.g.completion_matching_strategy_list={"exact", "substring", "fuzzy"}
+vim.g.completion_matching_strategy_list = {"exact", "substring", "fuzzy"}
 
 -- noswapfile
 -- nobackup
@@ -71,6 +70,10 @@ call plug#begin('~/.vim/plugged')
 
 " Indent guides
 Plug 'lukas-reineke/indent-blankline.nvim'
+
+" Todo highlight 
+
+Plug 'folke/todo-comments.nvim'
 
 " Auto pairs
 
@@ -127,6 +130,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
+
 " Formatter and linter
 
 Plug 'sbdchd/neoformat'
@@ -166,15 +170,18 @@ vim.g.nord_italic = true
 
 require('nord').set()
 
-vim.cmd[[colorscheme nord]]
+vim.cmd [[colorscheme nord]]
 
 -- Easy navigation
 
 require'hop'.setup()
 
-vim.api.nvim_set_keymap('n', '<leader><leader>', "<cmd> lua require'hop'.hint_patterns()<cr>", {})
-vim.api.nvim_set_keymap('v', '<leader><leader>', "<cmd> lua require'hop'.hint_patterns()<cr>", {})
-vim.api.nvim_set_keymap('o', '<leader><leader>', "<cmd> lua require'hop'.hint_patterns()<cr>", {})
+vim.api.nvim_set_keymap('n', '<leader><leader>',
+                        "<cmd> lua require'hop'.hint_patterns()<cr>", {})
+vim.api.nvim_set_keymap('v', '<leader><leader>',
+                        "<cmd> lua require'hop'.hint_patterns()<cr>", {})
+vim.api.nvim_set_keymap('o', '<leader><leader>',
+                        "<cmd> lua require'hop'.hint_patterns()<cr>", {})
 
 -- Vim indent guides 
 
@@ -186,11 +193,14 @@ require("indent_blankline").setup {
     show_current_context = true,
     show_current_context_start = true,
     show_end_of_line = true,
-    space_char_blankline = " ",
+    space_char_blankline = " "
 }
 
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = {"lua", "javascript", "typescript", "css", "html", "prisma", "graphql", "rust", "yaml"},
+    ensure_installed = {
+        "lua", "javascript", "typescript", "css", "html", "prisma", "graphql",
+        "rust", "yaml"
+    },
     highlight = {enable = true},
     incremental_selection = {enable = true},
     textobjects = {enable = true}
@@ -215,9 +225,9 @@ augroup END
 --
 
 require('lint').linters_by_ft = {
-  markdown = {'vale',},
-  typescript = {'eslint',},
-  javascript = {'eslint',},
+    markdown = {'vale'},
+    typescript = {'eslint'},
+    javascript = {'eslint'}
 }
 
 -- vim.cmd[[
@@ -247,8 +257,11 @@ vim.o.completeopt = 'menuone,noselect'
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and
+               vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col,
+                                                                          col)
+                   :match("%s") == nil
 end
 
 local function tab(fallback)
@@ -277,7 +290,7 @@ end
 
 local function enterit(fallback)
     if cmp.visible() and cmp.get_selected_entry() then
-        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false  })
+        cmp.confirm({behavior = cmp.ConfirmBehavior.Replace, select = false})
     else
         -- F("<CR>")
         fallback()
@@ -296,13 +309,13 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
         ['<Tab>'] = cmp.mapping(tab, {'i', 's', 'c'}),
-        ['<S-Tab>'] = cmp.mapping(shtab, { 'i', 's', 'c'}),
+        ['<S-Tab>'] = cmp.mapping(shtab, {'i', 's', 'c'}),
         ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if ou want to remove the default `<C-y>` mapping.
         ['<C-e>'] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close()
         }),
-        ['<CR>'] = cmp.mapping(enterit, {"i", "s"}),
+        ['<CR>'] = cmp.mapping(enterit, {"i", "s"})
     },
     sources = cmp.config.sources({
         {name = 'nvim_lsp'}, {name = 'luasnip'} -- For luasnip users.
@@ -349,10 +362,9 @@ require('lspconfig').tsserver.setup(config())
 require("lspconfig").cssls.setup(config())
 require('lspconfig').tailwindcss.setup(config())
 require('lspconfig').rust_analyzer.setup(config())
-require('lspconfig').prismals.setup{}
+require('lspconfig').prismals.setup {}
 
-require'lspconfig'.gopls.setup{}
-
+require'lspconfig'.gopls.setup {}
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
@@ -403,11 +415,13 @@ require("telescope").setup({
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
-        mappings = {i = {
-            ["<C-x>"] = false,
-            ["<C-q>"] = actions.send_to_qflist,
-            ["<esc>"] = actions.close,
-        }}
+        mappings = {
+            i = {
+                ["<C-x>"] = false,
+                ["<C-q>"] = actions.send_to_qflist,
+                ["<esc>"] = actions.close
+            }
+        }
     },
     extensions = {
         fzy_native = {
@@ -478,115 +492,82 @@ require'nvim-tree'.setup({
     -- hijack_unnamed_buffer_when_opening = true,
     -- ignore_buffer_on_setup = true,
 
-  auto_reload_on_write = true,
-  disable_netrw = true,
-  hijack_cursor = false,
-  hijack_netrw = true,
-  hijack_unnamed_buffer_when_opening = false,
-  ignore_buffer_on_setup = false,
-  open_on_setup = true,
-  open_on_setup_file = false,
-  open_on_tab = false,
-  sort_by = "name",
-  update_cwd = true,
-  view = {
-    width = 50,
-    height = 30,
-    side = "left",
-    preserve_window_proportions = true,
-    number = false,
-    relativenumber = true,
-    signcolumn = "yes",
-    mappings = {
-      custom_only = false,
-      list = {
-        -- user mappings go here
-      },
+    auto_reload_on_write = true,
+    disable_netrw = true,
+    hijack_cursor = false,
+    hijack_netrw = true,
+    hijack_unnamed_buffer_when_opening = false,
+    ignore_buffer_on_setup = false,
+    open_on_setup = true,
+    open_on_setup_file = false,
+    open_on_tab = false,
+    sort_by = "name",
+    update_cwd = true,
+    view = {
+        width = 50,
+        height = 30,
+        side = "left",
+        preserve_window_proportions = true,
+        number = false,
+        relativenumber = true,
+        signcolumn = "yes",
+        mappings = {
+            custom_only = false,
+            list = {
+                -- user mappings go here
+            }
+        }
     },
-  },
-  renderer = {
-    indent_markers = {
-      enable = false,
-      icons = {
-        corner = "└ ",
-        edge = "│ ",
-        none = "  ",
-      },
-    },
-    icons = {
-      webdev_colors = true,
-    },
-  },
-  hijack_directories = {
-    enable = true,
-    auto_open = true,
-  },
-  update_focused_file = {
-    enable = false,
-    update_cwd = false,
-    ignore_list = {},
-  },
-  ignore_ft_on_setup = {},
-  system_open = {
-    cmd = nil,
-    args = {},
-  },
-  diagnostics = {
-    enable = false,
-    show_on_dirs = false,
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
-    },
-  },
-  filters = {
-    dotfiles = false,
-    custom = {},
-    exclude = {},
-  },
-  git = {
-    enable = true,
-    ignore = true,
-    timeout = 400,
-  },
-  actions = {
-    use_system_clipboard = true,
-    change_dir = {
-      enable = true,
-      global = false,
-      restrict_above_cwd = false,
-    },
-    open_file = {
-      quit_on_open = false,
-      resize_window = false,
-      window_picker = {
-        enable = true,
-        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-        exclude = {
-          filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-          buftype = { "nofile", "terminal", "help" },
+    renderer = {
+        indent_markers = {
+            enable = false,
+            icons = {corner = "└ ", edge = "│ ", none = "  "}
         },
-      },
+        icons = {webdev_colors = true}
     },
-  },
-  trash = {
-    cmd = "trash",
-    require_confirm = true,
-  },
-  log = {
-    enable = false,
-    truncate = false,
-    types = {
-      all = false,
-      config = false,
-      copy_paste = false,
-      diagnostics = false,
-      git = false,
-      profile = false,
+    hijack_directories = {enable = true, auto_open = true},
+    update_focused_file = {enable = false, update_cwd = false, ignore_list = {}},
+    ignore_ft_on_setup = {},
+    system_open = {cmd = nil, args = {}},
+    diagnostics = {
+        enable = false,
+        show_on_dirs = false,
+        icons = {hint = "", info = "", warning = "", error = ""}
     },
-  },
+    filters = {dotfiles = false, custom = {}, exclude = {}},
+    git = {enable = true, ignore = true, timeout = 400},
+    actions = {
+        use_system_clipboard = true,
+        change_dir = {enable = true, global = false, restrict_above_cwd = false},
+        open_file = {
+            quit_on_open = false,
+            resize_window = false,
+            window_picker = {
+                enable = true,
+                chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+                exclude = {
+                    filetype = {
+                        "notify", "packer", "qf", "diff", "fugitive",
+                        "fugitiveblame"
+                    },
+                    buftype = {"nofile", "terminal", "help"}
+                }
+            }
+        }
+    },
+    trash = {cmd = "trash", require_confirm = true},
+    log = {
+        enable = false,
+        truncate = false,
+        types = {
+            all = false,
+            config = false,
+            copy_paste = false,
+            diagnostics = false,
+            git = false,
+            profile = false
+        }
+    }
 })
 
 -- vim.cmd[[
@@ -594,10 +575,12 @@ require'nvim-tree'.setup({
 -- ]]
 
 Nnoremap("<leader>pf",
-         "<cmd>:lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>")
-Nnoremap("<C-p>", "<cmd>:lua require('telescope.builtin').find_files()<CR>")
-Nnoremap("<Leader>ff", "<cmd>:lua require('telescope.builtin').find_files()<CR>")
-Nnoremap("<Leader>fb", "<cmd>:lua require('telescope.builtin').buffers()<CR>")
+         "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>")
+Nnoremap("<C-p>",
+         "<cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>")
+Nnoremap("<Leader>ff",
+         "<cmd>lua require('telescope.builtin').find_files({ hidden = true  })<CR>")
+Nnoremap("<Leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>")
 
 -- Other remaps
 
@@ -607,9 +590,9 @@ Nnoremap("<leader>=", ":Neoformat<CR>")
 
 -- NVIM Tree
 --
-Nnoremap("<leader>t", "<cmd>lua require\"nvim-tree\".toggle(false, true)<CR>")
-Nnoremap("<leader>r", ":NvimTreeRefresh<CR>")
-Nnoremap("<leader>n", ":NvimTreeFindFile<CR>")
+Nnoremap("<leader>tt", "<cmd>lua require\"nvim-tree\".toggle(false, true)<CR>")
+Nnoremap("<leader>tr", ":NvimTreeRefresh<CR>")
+Nnoremap("<leader>tf", ":NvimTreeFindFile<CR>")
 
 -- Git fugitive 
 
@@ -617,102 +600,24 @@ Nnoremap("<leader>gb", ":Git blame<CR>")
 Nnoremap("<leader>gd", ":Git vdiff<CR>")
 Nnoremap("<leader>gs", ":Git<CR>")
 Nnoremap("<leader>gp", ":Git push<CR>")
-Nnoremap("<leader>gh", ":diffget //3")
-Nnoremap("<leader>gu", ":diffget //2")
+Nnoremap("<leader>gdh", ":diffget //3<CR>")
+Nnoremap("<leader>gdl", ":diffget //2<CR>")
+Nnoremap("<leader>gfh", ":Glog -- %<CR>")
+
+-- Window navigation
 
 Nnoremap("<C-j>", "<C-W><C-j>")
 Nnoremap("<C-k>", "<C-W><C-k>")
 Nnoremap("<C-l>", "<C-W><C-l>")
 Nnoremap("<C-h>", "<C-W><C-h>")
 
+-- Use esc in terminal mode 
+
 Tnoremap("<Esc>", "<C-\\><C-n>")
 
--- vim.cmd [[
--- set laststatus=2
--- set statusline=
--- set statusline+=%2*
--- set statusline+=%{StatuslineMode()}
--- set statusline+=%1*
--- set statusline+=\ 
--- set statusline+=<
--- set statusline+=<
--- set statusline+=\ 
--- set statusline+=%f
--- set statusline+=\ 
--- set statusline+=>
--- set statusline+=>
--- set statusline+=%=
--- set statusline+=%m
--- set statusline+=%h
--- set statusline+=%r
--- set statusline+=\ 
--- set statusline+=%3*
--- set statusline+=%{b:gitbranch}
--- set statusline+=%1*
--- set statusline+=\ 
--- set statusline+=%4*
--- set statusline+=%F
--- set statusline+=:
--- set statusline+=:
--- set statusline+=%5*
--- set statusline+=%l
--- set statusline+=/
--- set statusline+=%L
--- set statusline+=%1*
--- set statusline+=|
--- set statusline+=%y
--- hi User2 ctermbg=lightgreen ctermfg=black guibg=lightgreen guifg=black
--- hi User1 ctermbg=black ctermfg=white guibg=black guifg=white
--- hi User3 ctermbg=black ctermfg=lightblue guibg=black guifg=lightblue
--- hi User4 ctermbg=black ctermfg=lightgreen guibg=black guifg=lightgreen
--- hi User5 ctermbg=black ctermfg=magenta guibg=black guifg=magenta
-
--- function! StatuslineMode()
---   let l:mode=mode()
---   if l:mode==#"n"
---     return "NORMAL"
---   elseif l:mode==?"v"
---     return "VISUAL"
---   elseif l:mode==#"i"
---     return "INSERT"
---   elseif l:mode==#"R"
---     return "REPLACE"
---   elseif l:mode==?"s"
---     return "SELECT"
---   elseif l:mode==#"t"
---     return "TERMINAL"
---   elseif l:mode==#"c"
---     return "COMMAND"
---   elseif l:mode==#"!"
---     return "SHELL"
---   endif
--- endfunction
-
--- function! StatuslineGitBranch()
---   let b:gitbranch=""
---   if &modifiable
---     try
---       let l:dir=expand('%:p:h')
---       let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
---       if !v:shell_error
---         let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
---       endif
---     catch
---     endtry
---   endif
--- endfunction
-
--- augroup GetGitBranch
---   autocmd!
---   autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
--- augroup END
--- ]]
-
-
 -- Lua line setup
-require('lualine').setup({
-    options = {
-        theme = 'nord'
-    }
-})
+require('lualine').setup({options = {theme = 'nord'}})
 
+-- TODOs
+
+require("todo-comments").setup {}

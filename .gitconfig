@@ -87,8 +87,8 @@
 	followTags = true
 
 [user]
-	name = "Pascal Poredda"
-	email = "me@pascal-poredda.de"
+	name = Pascal Poredda
+	email = me@pascal-poredda.de
 
 [credential]
 	helper = osxkeychain
