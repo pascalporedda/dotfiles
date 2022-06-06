@@ -74,10 +74,17 @@
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
 
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+
 [merge]
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+  tool = nvim
+
+[mergetool]
+  prompt = false
 
 [push]
 

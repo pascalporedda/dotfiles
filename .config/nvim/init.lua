@@ -5,8 +5,9 @@ require('lzrvim.plugins')
 require('lzrvim.treesitter')
 require('lzrvim.telescope')
 require('lzrvim.lsp')
-require('lzrvim.linting')
+require('lzrvim.debugging')
 require('lzrvim.theming')
 require('lzrvim.filetree')
+require('lzrvim.quickfix')
 require('lzrvim.keymapping')
---
+

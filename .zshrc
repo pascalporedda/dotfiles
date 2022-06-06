@@ -46,7 +46,7 @@ alias showall="defaults write com.apple.finder AppleShowAllFiles YES"
 alias hideall="defaults write com.apple.finder AppleShowAllFiles NO"
 alias vim="nvim"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias envim='nvim ~/.config/nvim/init.lua'
+alias envim='nvim ~/.config/nvim/'
 alias ytdl-audio="youtube-dl -o '$HOME/YouTube Music/%(title)s.%(ext)s' --audio-format mp3 --extract-audio --audio-quality 0"
 alias open-cloud="cd '/Users/pascal/Library/Mobile Documents/com~apple~CloudDocs'"
 alias notes="open-cloud && cd MDNotes && vim ."
