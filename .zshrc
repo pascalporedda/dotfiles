@@ -1,13 +1,13 @@
-if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
-    if [[ -z "$TMUX" ]] ;then
-        ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
-        if [[ -z "$ID" ]] ;then # if not available create a new one
-            tmux new-session
-        else
-            tmux attach-session -t "$ID" # if available attach to it
-        fi
-    fi
-fi
+# if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
+#     if [[ -z "$TMUX" ]] ;then
+#         ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
+#         if [[ -z "$ID" ]] ;then # if not available create a new one
+#             tmux new-session
+#         else
+#             tmux attach-session -t "$ID" # if available attach to it
+#         fi
+#     fi
+# fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -50,6 +50,7 @@ alias envim='nvim ~/.config/nvim/'
 alias ytdl-audio="youtube-dl -o '$HOME/YouTube Music/%(title)s.%(ext)s' --audio-format mp3 --extract-audio --audio-quality 0"
 alias open-cloud="cd '/Users/pascal/Library/Mobile Documents/com~apple~CloudDocs'"
 alias notes="open-cloud && cd MDNotes && vim ."
+alias sesh="tmux new-session -s main"
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1
 export OPENSSL_LIBRARIES=/usr/local/opt/openssl@1.1/lib

@@ -40,6 +40,8 @@ M.n_noremap("<Leader>pf",
 -- nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
 M.n_noremap("<leader>vh", "<cmd>lua require('telescope.builtin').help_tags()<CR>")
 M.n_noremap("<C-p>", "<cmd>lua require('telescope.builtin').git_files()<CR>")
+M.n_noremap("<C-e>", "<cmd>lua require('telescope').extensions.harpoon.marks()<CR>")
+M.n_noremap("<leader>e", "<cmd>lua require('telescope').extensions.harpoon.marks()<CR>")
 
 -- Git worktree mappings
 M.n_noremap('<leader>gw',
@@ -50,8 +52,8 @@ M.n_noremap('<leader>gm',
 -- Harpoon mappings
 
 M.n_noremap_silent('<leader>a', '<cmd>lua require("harpoon.mark").add_file()<CR>')
-M.n_noremap_silent('<C-e>', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>')
-M.n_noremap_silent('<leader>e', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>')
+-- M.n_noremap_silent('<C-e>', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>')
+-- M.n_noremap_silent('<leader>e', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>')
 M.n_noremap_silent('<leader><leader>a', '<cmd>lua require("harpoon.ui").nav_file(1)<CR>')
 M.n_noremap_silent('<leader><leader>s', '<cmd>lua require("harpoon.ui").nav_file(2)<CR>')
 M.n_noremap_silent('<leader><leader>d', '<cmd>lua require("harpoon.ui").nav_file(3)<CR>')
@@ -104,7 +106,7 @@ M.n_noremap('<leader>k', '<cmd>cprev<CR>zz')
 M.n_noremap('<leader>j', '<cmd>cnext<CR>zz')
 M.n_noremap('<leader><leader>k', '<cmd>lprev<CR>zz')
 M.n_noremap('<leader><leader>j', '<cmd>lnext<CR>zz')
-M.n_noremap('<C-q>', '<cmd>call ToggleQFList(1)<CR>')
-M.n_noremap('<leader>q', '<cmd>call ToggleQFList(0)<CR>')
+M.n_noremap('<leader>q', '<cmd>lua require("lzrvim.quickfix").toggle_qf_list(true)<CR>')
+M.n_noremap('<leader><leader>q', '<cmd>lua require("lzrvim.quickfix").toggle_qf_list(false)<CR>')
 
 return M

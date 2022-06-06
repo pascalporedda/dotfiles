@@ -10,4 +10,9 @@ function M.create_augroup(autocmds, name)
     cmd('augroup END')
 end
 
+function M.inspect (v)
+	print(vim.inspect(v))
+	return v
+end
+
 return M

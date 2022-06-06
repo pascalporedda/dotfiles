@@ -11,3 +11,5 @@ require('lzrvim.filetree')
 require('lzrvim.quickfix')
 require('lzrvim.keymapping')
 
+P = require('lzrvim.utils').inspect
+
