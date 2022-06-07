@@ -64,7 +64,7 @@ M.n_noremap_silent('<leader><leader>f', '<cmd>lua require("harpoon.ui").nav_file
 M.i_noremap("jk", "<Esc>")
 M.i_noremap("kj", "<Esc>")
 M.n_noremap_silent("<leader>=", ":Neoformat<CR>")
-M.n_noremap_silent("<leader>/", ":Rg ")
+-- M.n_noremap_silent("<leader>/", ":Rg ")
 
 -- NVIM Tree
 --

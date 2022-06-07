@@ -93,10 +93,6 @@ Plug 'nvim-lualine/lualine.nvim'
 " Git signs
 Plug 'lewis6991/gitsigns.nvim'
 
-" Search and replace 
-
-Plug 'jremmen/vim-ripgrep'
-
 call plug#end()
 ]])
 
