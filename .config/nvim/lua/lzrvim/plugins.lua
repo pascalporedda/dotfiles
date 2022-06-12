@@ -85,6 +85,8 @@ Plug 'tpope/vim-commentary'
 
 Plug 'navarasu/onedark.nvim'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'gruvbox-community/gruvbox'
+Plug 'luisiacc/gruvbox-baby'
 
 " Lua line
 

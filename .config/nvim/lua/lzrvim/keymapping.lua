@@ -31,9 +31,11 @@ vim.g.mapleader = ' '
 
 -- Telescope mappings
 M.n_noremap("<leader>ps",
-            "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>")
+            "<cmd>lua require('telescope.builtin').grep_string({ hidden = true, search = vim.fn.input(\"Grep For > \")})<CR>")
+M.n_noremap("<leader>po",
+            "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>")
 M.n_noremap("<leader>pw",
-            "<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.expand('<cword>') }<CR>")
+            "<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.expand('<cword>'), hidden = true }<CR>")
 M.n_noremap("<leader>pb", "<cmd>lua require('telescope.builtin').buffers()<CR>")
 M.n_noremap("<Leader>pf",
             "<cmd>lua require('telescope.builtin').find_files({ hidden = true  })<CR>")
@@ -76,11 +78,11 @@ M.n_noremap("<leader>tf", ":NvimTreeFindFile<CR>")
 -- Git fugitive and other git commands
 
 M.n_noremap("<leader>gb", ":Git blame<CR>")
-M.n_noremap("<leader>gd", ":Git diff<CR>")
+M.n_noremap("<leader>gd", ":Gvdiffsplit!<CR>")
 M.n_noremap("<leader>gs", ":Git<CR>")
 M.n_noremap("<leader>gp", ":Git push<CR>")
-M.n_noremap("<leader>gdh", ":diffget //3<CR>")
-M.n_noremap("<leader>gdl", ":diffget //2<CR>")
+M.n_noremap("<leader>gdh", ":diffget //2<CR>")
+M.n_noremap("<leader>gdl", ":diffget //3<CR>")
 M.n_noremap("<leader>gfh", ":Glog -- %<CR>")
 
 

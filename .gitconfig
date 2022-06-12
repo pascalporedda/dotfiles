@@ -19,6 +19,8 @@
 	branches = branch -a
 	remotes = remote -v
 
+  clone-for-worktree = "!sh $HOME/.clone-for-worktree.sh"
+
 [apply]
 	whitespace = fix
 

@@ -1,13 +1,13 @@
-# if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
-#     if [[ -z "$TMUX" ]] ;then
-#         ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
-#         if [[ -z "$ID" ]] ;then # if not available create a new one
-#             tmux new-session
-#         else
-#             tmux attach-session -t "$ID" # if available attach to it
-#         fi
-#     fi
-# fi
+if [ "$TERM" = "xterm-kitty" ]; then
+    if [[ -z "$TMUX" ]] ;then
+        ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
+        if [[ -z "$ID" ]] ;then # if not available create a new one
+            tmux new-session -s main
+        else
+            tmux attach-session -t "$ID" # if available attach to it
+        fi
+    fi
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

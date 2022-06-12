@@ -130,9 +130,9 @@ local function lsp_config(_config)
       key_mapper.n_noremap_silent("<leader>vd",
       "<cmd>lua vim.diagnostic.open_float()<CR>")
       key_mapper.n_noremap_silent("[[",
-      ":lua vim.lsp.diagnostic.goto_next()<CR>")
+      ":lua vim.diagnostic.goto_next()<CR>")
       key_mapper.n_noremap_silent("]]",
-      ":lua vim.lsp.diagnostic.goto_prev()<CR>")
+      ":lua vim.diagnostic.goto_prev()<CR>")
       key_mapper.n_noremap_silent("<leader>cr",
       ":lua vim.lsp.buf.references()<CR>")
       key_mapper.n_noremap_silent("<leader>rr",

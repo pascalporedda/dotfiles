@@ -15,8 +15,6 @@ util.create_augroup({
 local M = {}
 
 function M.toggle_qf_list(global_list)
-  -- local win_id vim.win_getid()
-  -- vim.getwininfo()
   if global_list then
     if vim.g.lzrvim_is_qf_g == 1 then
       vim.cmd('cclose')
@@ -49,41 +47,6 @@ function M.toggle_qf_control_variable(is_leaving)
 
   return win  
 end
-
--- fun! ToggleQFList(global)
---     if a:global
---         if g:lzrvim_is_qf_g == 1
---             cclose
---         else
---             copen
---         end
---     else
---         if g:lzrvim_is_qf_l == 1
---             lclose
---         else
---             lopen
---         end
---     endif
--- endfun
-
--- vim.cmd[[
-
--- fun! SetQFControlVariable()
---     if getwininfo(win_getid())[0]['loclist'] == 1
---         let g:lzrvim_is_qf_l = 1
---     else
---         let g:lzrvim_is_qf_g = 1
---     end
--- endfun
-
--- fun! UnsetQFControlVariable()
---     if getwininfo(win_getid())[0]['loclist'] == 1
---         let g:lzrvim_is_qf_l = 0
---     else
---         let g:lzrvim_is_qf_g = 0
---     end
--- endfun
--- ]]
 
 util.create_augroup({
   {
