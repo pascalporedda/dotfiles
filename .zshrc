@@ -1,13 +1,13 @@
-if [ "$TERM" = "xterm-kitty" ]; then
-    if [[ -z "$TMUX" ]] ;then
-        ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
-        if [[ -z "$ID" ]] ;then # if not available create a new one
-            tmux new-session -s main
-        else
-            tmux attach-session -t "$ID" # if available attach to it
-        fi
-    fi
-fi
+# if [ "$TERM" = "xterm-256color" ]; then
+#     if [[ -z "$TMUX" ]] ;then
+#         ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
+#         if [[ -z "$ID" ]] ;then # if not available create a new one
+#             tmux new-session -s main
+#         else
+#             tmux attach-session -t "$ID" # if available attach to it
+#         fi
+#     fi
+# fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -35,7 +35,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git zsh-autosuggestions zsh-nvm 1password docker-compose tmux tmuxinator)
+plugins=(git zsh-autosuggestions zsh-nvm 1password docker-compose tmuxinator)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -54,6 +54,9 @@ alias sesh="tmux new-session -s main"
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1
 export OPENSSL_LIBRARIES=/usr/local/opt/openssl@1.1/lib
+
+
+export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
 
 # eval "$(pyenv init -)"
 
@@ -76,3 +79,7 @@ export LD_LIBRARY_PATH=/opt/homebrew/opt/ghostscript/lib:$LD_LIBRARY_PATH
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+export SKIP_LINTING=1
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

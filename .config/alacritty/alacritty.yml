@@ -1,15 +1,9 @@
+
 window:
   dynamic_title: true
   dimensions:
     columns: 0
     lines: 0
-
-  # opacity: 0.9
-  
-  #startup_mode: SimpleFullscreen
-  #position:
-    #x: 0
-    #y: 0
 
   padding:
     x: 5 
@@ -24,26 +18,26 @@ scrolling:
 
 font:
   normal:
-    family: FiraMono Nerd Font
-    style: Bold
+    family: FiraCode Nerd Font 
+    style: Regular
 
   bold:
-    family: FiraMono Nerd Font
+    family: FiraCode Nerd Font 
     style: Bold
 
   italic:
-    family: FiraMono Nerd Font
+    family: FiraCode Nerd Font 
     style: Bold Italic
 
-  size: 16.0
+  size: 14.0
 
   offset:
     x: 0
-    y: 1
+    y: 2
 
   glyph_offset:
     x: 0
-    y: 0
+    y: 2
 
   use_thin_strokes: false
 
@@ -54,84 +48,68 @@ selection:
   text:       '0xFAFAFA'
   background: '0x252834'
 
-# Colors (One Dark)
+# TOKYONIGHT DARK
+
 colors:
   # Default colors
   primary:
-    background: '0x1e2127'
-    foreground: '0xabb2bf'
-
+    background: '0x1a1b26'
+    foreground: '0xc0caf5'
   # Normal colors
   normal:
-    black:   '0x1e2127'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xabb2bf'
-
+    black:   '0x15161E'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xa9b1d6'
   # Bright colors
   bright:
-    black:   '0x5c6370'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xffffff'
+    black:   '0x414868'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xc0caf5'
+  indexed_colors:
+    - { index: 16, color: '0xff9e64' }
+    - { index: 17, color: '0xdb4b4b' }
+    
 
-# Nord color scheme
+# TokyoNight Day
+
 # colors:
+#   # Default colors
 #   primary:
-#     background: '#2e3440'
-#     foreground: '#d8dee9'
-#     dim_foreground: '#a5abb6'
-#   cursor:
-#     text: '#2e3440'
-#     cursor: '#d8dee9'
-#   vi_mode_cursor:
-#     text: '#2e3440'
-#     cursor: '#d8dee9'
-#   selection:
-#     text: CellForeground
-#     background: '#4c566a'
-#   search:
-#     matches:
-#       foreground: CellBackground
-#       background: '#88c0d0'
-#     bar:
-#       background: '#434c5e'
-#       foreground: '#d8dee9'
+#     background: '0xe1e2e7'
+#     foreground: '0x3760bf'
+#   # Normal colors
 #   normal:
-#     black: '#3b4252'
-#     red: '#bf616a'
-#     green: '#a3be8c'
-#     yellow: '#ebcb8b'
-#     blue: '#81a1c1'
-#     magenta: '#b48ead'
-#     cyan: '#88c0d0'
-#     white: '#e5e9f0'
+#     black:   '0xe9e9ed'
+#     red:     '0xf52a65'
+#     green:   '0x587539'
+#     yellow:  '0x8c6c3e'
+#     blue:    '0x2e7de9'
+#     magenta: '0x9854f1'
+#     cyan:    '0x007197'
+#     white:   '0x6172b0'
+#   # Bright colors
 #   bright:
-#     black: '#4c566a'
-#     red: '#bf616a'
-#     green: '#a3be8c'
-#     yellow: '#ebcb8b'
-#     blue: '#81a1c1'
-#     magenta: '#b48ead'
-#     cyan: '#8fbcbb'
-#     white: '#eceff4'
-#   dim:
-#     black: '#373e4d'
-#     red: '#94545d'
-#     green: '#809575'
-#     yellow: '#b29e75'
-#     blue: '#68809a'
-#     magenta: '#8c738c'
-#     cyan: '#6d96a5'
-#     white: '#aeb3bb'
+#     black:   '0xa1a6c5'
+#     red:     '0xf52a65'
+#     green:   '0x587539'
+#     yellow:  '0x8c6c3e'
+#     blue:    '0x2e7de9'
+#     magenta: '0x9854f1'
+#     cyan:    '0x007197'
+#     white:   '0x3760bf'
+#   indexed_colors:
+#     - { index: 16, color: '0xb15c00' }
+#     - { index: 17, color: '0xc64343' }
 
 key_bindings:
   - { key: Space, mods: Control, chars: "\x00" }

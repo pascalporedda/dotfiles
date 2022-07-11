@@ -32,20 +32,18 @@ vim.g.mapleader = ' '
 -- Telescope mappings
 M.n_noremap("<leader>ps",
             "<cmd>lua require('telescope.builtin').grep_string({ hidden = true, search = vim.fn.input(\"Grep For > \")})<CR>")
-M.n_noremap("<leader>po",
-            "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>")
 M.n_noremap("<leader>pw",
             "<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.expand('<cword>'), hidden = true }<CR>")
 M.n_noremap("<leader>pb", "<cmd>lua require('telescope.builtin').buffers()<CR>")
 M.n_noremap("<Leader>pf",
             "<cmd>lua require('telescope.builtin').find_files({ hidden = true  })<CR>")
--- nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
 M.n_noremap("<leader>vh", "<cmd>lua require('telescope.builtin').help_tags()<CR>")
 M.n_noremap("<C-p>", "<cmd>lua require('telescope.builtin').git_files()<CR>")
-M.n_noremap("<C-e>", "<cmd>lua require('telescope').extensions.harpoon.marks()<CR>")
-M.n_noremap("<leader>e", "<cmd>lua require('telescope').extensions.harpoon.marks()<CR>")
+M.n_noremap("<leader>fb", "<cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>")
 
 -- Git worktree mappings
+M.n_noremap("<C-e>", "<cmd>lua require('telescope.builtin').oldfiles({ only_cwd = true })<CR>")
+M.n_noremap("<leader>e", "<cmd>lua require('telescope').extensions.harpoon.marks()<CR>")
 M.n_noremap('<leader>gw',
             '<cmd>lua require("telescope").extensions.git_worktree.git_worktrees()<CR>')
 M.n_noremap('<leader>gm',
@@ -66,7 +64,7 @@ M.n_noremap_silent('<leader><leader>f', '<cmd>lua require("harpoon.ui").nav_file
 M.i_noremap("jk", "<Esc>")
 M.i_noremap("kj", "<Esc>")
 M.n_noremap_silent("<leader>=", ":Neoformat<CR>")
--- M.n_noremap_silent("<leader>/", ":Rg ")
+M.n_noremap_silent("<leader>ts", "<cmd>lua require('lzrvim.theming').toggle_theme()<CR>")
 
 -- NVIM Tree
 --

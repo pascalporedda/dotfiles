@@ -19,7 +19,7 @@
 	branches = branch -a
 	remotes = remote -v
 
-  clone-for-worktree = "!sh $HOME/.clone-for-worktree.sh"
+  clone-for-worktree = "!sh $HOME/.clone-for-worktrees.sh"
 
 [apply]
 	whitespace = fix
@@ -94,6 +94,7 @@
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+  autoSetupRemote = true
 
 [user]
 	name = Pascal Poredda

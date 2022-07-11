@@ -43,7 +43,12 @@ o.signcolumn = "yes"
 o.updatetime = 50
 
 o.shortmess = "a"
+
+-- Give more space for displaying messages.
 o.cmdheight = 1
+
+-- Don't pass messages to |ins-completion-menu|.
+vim.opt.shortmess:append("c")
 
 o.colorcolumn = "80"
 

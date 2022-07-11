@@ -23,10 +23,26 @@ local util = require('lzrvim.utils')
 -- hi TelescopeBorder guifg=#5eacd
 -- ]]
 -- require('lualine').setup({options = {theme = 'gruvbox'}})
-require('onedark').setup {style = 'light', transparent = false}
-require('onedark').load()
+
+
+-- Tokyonight theme
+vim.g.tokyonight_style = "day"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
+-- Change the "hint" color to the "orange" color, and make the "error" color bright red
+vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
+-- Load the colorscheme
+vim.cmd[[colorscheme tokyonight]]
+
+
+-- require('onedark').setup {style = 'light', transparent = false}
+-- require('onedark').load()
+
+-- LuaLine
 require('lualine').setup({
-    options = {theme = 'onedark', globalstatus = false},
+    options = {theme = 'tokyonight', globalstatus = false},
     sections = {
         lualine_a = {'mode'},
         lualine_b = {'branch', 'diff', 'diagnostics'},
@@ -38,26 +54,9 @@ require('lualine').setup({
         lualine_z = {'location'}
     }
 })
---
--- local catppuccin = require("catppuccin")
 
--- catppuccin.setup({
---     term_colors = true,
---     integrations = {
---         nvimtree = {
---             enabled = true,
---             show_root = true, -- makes the root folder not transparent
---             transparent_panel = false -- make the panel transparent
---         }
---     }
--- })
 
--- vim.g.catppuccin_flavour = 'mocha'
--- vim.cmd [[colorscheme catppuccin]]
-
--- require('lualine').setup({options = {theme = 'catppuccin'}})
--- require('lualine').setup({options = {theme = 'onedark'}})
-
+-- Blankline indents
 o.list = true
 o.listchars:append("eol:↴")
 o.listchars:append("space:⋅")
@@ -75,7 +74,7 @@ vim.api.nvim_exec([[
   hi WinSeparator guibg=None
 ]], false)
 
--- Highlight yanked lines 
+-- Highlight yanked lines
 
 util.create_augroup({
     {
@@ -84,3 +83,23 @@ util.create_augroup({
     }
 }, 'highlight_yank')
 
+
+vim.cmd[[
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+endif
+]]
+
+
+local M = {}
+
+function M.toggle_theme ()
+  if vim.opt.background == 'dark' then
+    vim.opt.background = 'light'
+  else
+    vim.opt.background = 'dark'
+  end
+end
+
+return M

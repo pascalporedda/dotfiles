@@ -43,6 +43,10 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind-nvim'
 Plug 'nvim-lua/lsp_extensions.nvim'
+Plug 'github/copilot.vim'
+" Plug 'zbirenbaum/copilot.lua'
+"" Plug 'zbirenbaum/copilot-cmp'
+
 
 " the maintainer currently is working on a rewrite 
 " "Plug 'glepnir/lspsaga.nvim'
@@ -57,6 +61,7 @@ Plug 'kevinhwang91/nvim-bqf'
 
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
+Plug 'Neevash/awesome-flutter-snippets'
 
 Plug 'tpope/vim-fugitive'
 
@@ -72,6 +77,8 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'ThePrimeagen/harpoon'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 
 " Formatter and linter
 
@@ -84,9 +91,9 @@ Plug 'tpope/vim-commentary'
 " Colors
 
 Plug 'navarasu/onedark.nvim'
-Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-Plug 'gruvbox-community/gruvbox'
-Plug 'luisiacc/gruvbox-baby'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+" Plug 'gruvbox-community/gruvbox'
+" Plug 'luisiacc/gruvbox-baby'
 
 " Lua line
 

@@ -12,8 +12,7 @@ url=$1
 basename=${url##*/}
 name=${2:-${basename%.*}}
 
-mkdir $name
-cd "$name"
+# mkdir $name
 
 # Moves all the administrative git files (a.k.a $GIT_DIR) under .bare directory.
 #
@@ -24,8 +23,9 @@ cd "$name"
 # new-awesome-feature
 # hotfix-bug-12
 # ...
-git clone --bare "$url" .bare
-echo "gitdir: ./.bare" > .git
+git clone --bare "$url" $name
+cd $name
+# echo "gitdir: ./.bare" > .git
 
 # Explicitly sets the remote origin fetch so we can fetch remote branches
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
